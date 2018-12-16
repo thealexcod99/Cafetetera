@@ -2,7 +2,9 @@
 public class TestCafetetera {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Menus menus = new Menus();
+		
+		menus.menuCliente();
 
 	}
 
