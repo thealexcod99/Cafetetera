@@ -3,7 +3,7 @@ public class Cafetetera {
 
 	private int vasos;
 	private float nivel_agua;
-	private float consumibles [][]; //[número cápsula], [tiempo], [agua], [temperatura], [precio]
+	private float consumibles[][]; //[número cápsula], [tiempo], [agua], [temperatura], [precio]
 	private int max_consumibles;
 	
 	/**
@@ -20,6 +20,10 @@ public class Cafetetera {
 		this.recargarCafetetera();
 	}
 	
+	public float capsulasCafe(int cafe) {
+		return consumibles[cafe][0];
+	}
+
 	/**
 	 * @return the vasos
 	 */
@@ -89,6 +93,11 @@ public class Cafetetera {
 		return consumibles;
 	}
 	
+	public void añadirCapsulas(float capsulas) {
+		for (int i = 0; i < 5; i++)
+			this.consumibles[i][0] = capsulas;
+	}
+	
 //comprobar el estado de la cafetetera
 	public boolean hayAguaCafetera(int cafe) {
 		if (nivel_agua >= consumibles[cafe][2]) 
@@ -147,7 +156,7 @@ public class Cafetetera {
 		return cod_err;
 	}
 
-	//Mensajes de error	
+//Mensajes de error	
 	public void servirCafe(int cafe) {
 		int mensaje = this.pedirCafe(cafe);
 		if (mensaje == 0) {

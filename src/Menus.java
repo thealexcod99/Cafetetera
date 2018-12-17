@@ -2,7 +2,10 @@ import java.util.Scanner;
 
 public class Menus {
 	
+	static Scanner sc = new Scanner(System.in);
+	
 	Cafetetera cafetetera = new Cafetetera(10, 5, new float[5][5], 2);
+	Usuario user = new Usuario("usuario", 1234);
 	
 	public void menuCliente() {
 		
@@ -22,22 +25,18 @@ public class Menus {
 		System.out.println("|                                          |");
 		System.out.println("|__________________________________________|");
 		
-		Scanner sc = new Scanner(System.in);
-		
 		int opcion = sc.nextInt();
-		//boolean salir = false;
 		
 		switch (opcion) {
 		
 		case 1:
 			this.menuProductos();
-		//case 2:
-			
+		case 2:
+			this.menuUsuario();
 		default:
 			System.out.println("Opción incorrecta");
 			this.menuCliente();
 		}
-		sc.close();
 	}
 	
 	public void menuProductos() {
@@ -57,9 +56,7 @@ public class Menus {
 		System.out.println("|                                          |");
 		System.out.println("|                Para volver atrás pulsa 5 |");
 		System.out.println("|__________________________________________|");
-		
-		Scanner sc = new Scanner(System.in);
-		
+				
 		int cafe = sc.nextInt();
 		
 		switch (cafe) {
@@ -89,10 +86,29 @@ public class Menus {
 			System.out.println("Opción incorrecta");
 			this.menuProductos();			
 		}
-		
-		
-		sc.close();
 	}
+	
+	public void menuUsuario() {
+		System.out.println(" __________________________________________");
+		System.out.println("|                                          |");
+		System.out.println("|              CAFTETERA(Admin)            |");
+		System.out.println("|                                          |");
+		System.out.println("|     Introduce el usuario y contraseña    |");
+		System.out.println("|__________________________________________|");
+		
+		System.out.print("Usuario: ");
+		user.setLogin(sc.next());
+		System.out.println("Contraseña: ");
+		int contraseña = sc.nextInt();
+		if (contraseña == user.getPassword()) 
+			this.menuAdmin();
+		else {
+			System.out.println("Contraseña incorrecta");
+			this.menuCliente();
+		}
+	}
+	
+	
 	
 	public void menuAdmin() {
 		
@@ -111,44 +127,42 @@ public class Menus {
 		System.out.println("|                                          |");
 		System.out.println("|        Pulsa la opción que deseas...     |");
 		System.out.println("|__________________________________________|");
-		
-Scanner sc = new Scanner(System.in);
-		
+				
 		int opcion = sc.nextInt();
 		
 		switch (opcion) {
-//		case 1:
-//			cafetetera.pedirCafe(opcion);
-//			cafetetera.servirCafe(opcion);
-//			this.menuCliente();
+		case 1:
+			System.out.println("Opción no disponible de momento");
+			this.menuAdmin();
 		case 2:
-			
-			this.menuCliente();
+			System.out.println("Número de vasos: " + cafetetera.getVasos());
+			System.out.println("Nivel de agua: " + cafetetera.getNivel_agua());
+			for(int i = 0; i < 5; i++)
+				System.out.println("Cápsulas del consumible " + i + ": " + (cafetetera.capsulasCafe(i)));	
+			this.menuAdmin();
 		case 3:
-			cafetetera.pedirCafe(opcion);
-			cafetetera.servirCafe(opcion);
-			this.menuCliente();
+			System.out.print("Introduce el número de vasos: ");
+			cafetetera.setVasos(sc.nextInt());
+			this.menuAdmin();
 		case 4:
-			cafetetera.pedirCafe(opcion);
-			cafetetera.servirCafe(opcion);
-			this.menuCliente();
+			System.out.print("Introduce el nivel del agua: ");
+			cafetetera.setNivel_agua(sc.nextFloat());
+			this.menuAdmin();
 		case 5:
-			cafetetera.pedirCafe(opcion);
-			cafetetera.servirCafe(opcion);
-			this.menuCliente();
+			System.out.print("Introduce el número de cápsulas: ");
+			cafetetera.añadirCapsulas(sc.nextFloat());
+			this.menuAdmin();
 		case 6:
-			
+			System.out.println("Opción no disponible de momento");
+			this.menuAdmin();
 		case 7:
 			this.menuCliente();
 		case 8:
+			System.out.println("Apagando cafetera.....................................................................................................................................................................");
 			System.exit(1);
 		default:
 			System.out.println("Opción incorrecta");
 			this.menuAdmin();			
-		}
-		
-		
-		sc.close();
-		
+		}	
 	}  
 }
