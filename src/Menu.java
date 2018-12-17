@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Menus {
+public class Menu {
 	
 	static Scanner sc = new Scanner(System.in);
 	

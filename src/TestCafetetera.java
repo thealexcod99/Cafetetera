@@ -2,9 +2,9 @@
 public class TestCafetetera {
 
 	public static void main(String[] args) {
-		Menus menus = new Menus();
+		Menu menu = new Menu();
 		
-		menus.menuCliente();
+		menu.menuCliente();
 
 	}
 
